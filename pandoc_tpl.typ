@@ -26,7 +26,22 @@
 #show raw: it => {
   if it.block {
     if it.lang == "julia" or it.lang =="python" {
-      block(fill: luma(250), width: 100%, inset: 8pt, radius: 2pt, it)
+      let top_right(lang) = style(styles => {
+        let body = "Python"
+        if lang == "julia" {
+          body = "Julia"
+        }
+        let w = measure(body, styles).width
+        place(
+          dy:-8pt,
+          dx: 100%- w,
+          block(fill: luma(255), inset: 4pt, body),
+        )
+      })
+      block(fill: luma(250), width: 100%, inset: 8pt, radius: 2pt, [
+        #top_right(it.lang)
+        #it
+      ], )
     } else {
       block(fill: luma(230), width: 100%, inset: 7pt, radius: 1pt, it)
     }
@@ -34,5 +49,4 @@
     it
   }
 }
-
 $body$
