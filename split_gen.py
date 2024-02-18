@@ -22,7 +22,7 @@ if not fname.endswith(".typ"):
     os._exit(1)
 
 with open(fname, mode='r') as f:
-    typ = f.read()
+    typ = f.read().replace('width: 600.0pt, ', "")
 
 
 sap = """
